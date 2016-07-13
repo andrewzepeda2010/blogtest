@@ -1,0 +1,83 @@
+<?php echo $this->render("includes/header.phtml"); ?>
+
+<body>
+
+	<?php echo $this->render("includes/topnav.phtml"); ?>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('<?php echo BASEURL; ?>/public/img/contact-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Comment a Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">Write and Share</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+<div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<div class="post-preview">
+		<a href="/blog/post/id/<?php echo $value['id']; ?>">
+			<h2 class="post-title">
+				<?php echo $this->blog['title']; ?>
+			</h2>
+			<h3 class="post-subtitle">
+				<?php echo $this->blog['content']; ?>
+			</h3>
+		</a>
+		<p class="post-meta"> <a href="/blog/comment/id/<?php echo $this->blog['id']; ?>">Comment</a> | Posted by <a href="/users/profile/<?php echo $this->blog['user_id']; ?>"><?php echo $this->blog['username']; ?></a> on <?php echo date("F j, Y", strtotime($this->blog['created_at'])); ?></p>
+	</div>
+	<hr>
+	</div>
+</div>
+	
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>Give your all-out comment!</p>
+                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+                <form name="sentMessage" id="commentForm" novalidate>
+					<input type="hidden" name="blog_id" id="blog_id" value="<?php echo $this->blog['id']; ?>">
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Content</label>
+							<textarea rows="5" class="form-control" placeholder="Content" id="content" name="content" required data-validation-required-message="Please enter your blog."></textarea>
+							
+							
+							<p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div id="success"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-default">Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+	<?php echo $this->render("includes/footer.phtml"); ?>
+
+    <!-- jQuery -->
+	<?php echo $this->render("includes/javascript.phtml"); ?>
+    <script src="<?php echo BASEURL; ?>/public/js/comment.js"></script>
+</body>
+
+</html>
